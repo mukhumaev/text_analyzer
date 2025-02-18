@@ -1,3 +1,4 @@
+
 defmodule TextAnalyzer.Worker do
   use GenServer
 

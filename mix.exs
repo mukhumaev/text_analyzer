@@ -12,7 +12,6 @@ defmodule TextAnalyzer.MixProject do
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger],
@@ -20,10 +19,9 @@ defmodule TextAnalyzer.MixProject do
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:phoenix, "~> 1.6.0"},
+      {:phoenix, "~> 1.7.0-rc.0", override: true},
       {:phoenix_pubsub, "~> 2.0"},
       {:jason, "~> 1.4"},
       {:plug, "~> 1.14"},

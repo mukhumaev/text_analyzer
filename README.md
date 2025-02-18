@@ -1,21 +1,9 @@
-# TextAnalyzer
+# Text Analyzer
 
-**TODO: Add description**
+Text Analyzer - это приложение для анализа текста, написанное на языке Elixir.
 
-## Installation
+## Установка и запуск
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `text_analyzer` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:text_analyzer, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/text_analyzer>.
-
+1. Клонировать репозиторий: `git clone https://github.com/username/text_analyzer.git`
+2. Перейти в директорию приложения: `cd text_analyzer`
+3. Выполнить команду `make start`

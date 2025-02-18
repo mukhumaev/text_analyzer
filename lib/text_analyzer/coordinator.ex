@@ -2,23 +2,19 @@ defmodule TextAnalyzer.Coordinator do
   use GenServer
 
   def start_link(_) do
-    GenServer.start_link(__MODULE__, %{}, name: __MODULE__)
+    GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
   end
 
-  def init(state) do
-    workers = for _ <- 1..5, do: TextAnalyzer.Worker.start_link()
-    {:ok, %{workers: workers, tasks: %{}}}
+  @impl true
+  def init(:ok) do
+    {:ok, %{workers: [], current_index: 0}}
   end
 
-  def handle_call({:analyze, text}, _from, state) do
-    # Логика распределения задач между воркерами
-  end
-
-  def handle_call({:cancel, task_id}, _from, state) do
-    # Логика отмены задачи
-  end
-
-  def handle_call(:list_tasks, _from, state) do
-    {:reply, Map.keys(state.tasks), state}
+  @impl true
+  def handle_call({:assign_task, text}, _from, state) do
+    worker = Enum.at(state.workers, state.current_index)
+    new_index = rem(state.current_index + 1, length(state.workers))
+    GenServer.call(worker, {:analyze, text})
+    {:reply, :ok, %{state | current_index: new_index}}
   end
 end
