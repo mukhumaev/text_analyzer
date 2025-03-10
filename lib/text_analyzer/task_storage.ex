@@ -11,8 +11,10 @@ defmodule TextAnalyzer.TaskStorage do
     {:ok, %{}}
   end
 
-  def save_task(task_id, task_data) do
-    :ets.insert(:tasks, {task_id, task_data})
+  def save_task(task_data) do
+    task_id = generate_task_id()
+    :ets.insert(:tasks, {:started, task_id, task_data})
+    {:ok, {:started, task_id, task_data}}
   end
 
   def get_task(task_id) do
@@ -24,5 +26,11 @@ defmodule TextAnalyzer.TaskStorage do
 
   def list_tasks() do
     :ets.tab2list(:tasks)
+  end
+
+  # private
+
+  defp generate_task_id do
+    UUID.uuid4()
   end
 end

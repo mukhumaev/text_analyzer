@@ -25,6 +25,8 @@ defmodule TextAnalyzer.MixProject do
       {:phoenix_pubsub, "~> 2.0"},
       {:jason, "~> 1.4"},
       {:plug, "~> 1.14"},
+      {:uuid, "~> 1.1"},
+      {:vex, "~> 0.8.0"},
       {:plug_cowboy, "~> 2.6"}
     ]
   end

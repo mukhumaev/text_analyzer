@@ -26,6 +26,8 @@ defmodule TextAnalyzerWeb.Endpoint do
 
   plug(Plug.RequestId)
 
+  plug(TextAnalyzerWeb.Router)
+
   def init(_key, config) do
     {:ok, config}
   end

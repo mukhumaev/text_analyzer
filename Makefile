@@ -1,5 +1,5 @@
 
-.DEFAULT_GOAL := help
+.DEFAULT_GOAL := start
 .PHONY = start build run clean help
 
 ################################################################################
@@ -15,6 +15,20 @@ run: build ## Start docker container
 clean: ## Remove docker image and container
 	docker container rm -f text_analyzer
 	docker image rm text_analyzer
+
+ft: ## fast test
+	@docker run -it --rm -e MIX_ENV=prod \
+				-p 127.0.0.1:4000:4000 \
+				-w /app \
+				-v ./:/app elixir:1.18-otp-27 \
+				bash -c 'mix deps.get && mix compile && yes | mix release && echo +++++++++START+++++++++ && /app/_build/$${MIX_ENV}/rel/text_analyzer/bin/text_analyzer start'
+
+iex: ## fast test iex
+	@docker run -it --rm -e MIX_ENV=prod \
+				-p 127.0.0.1:4000:4000 \
+				-w /app \
+				-v ./:/app elixir:1.18-otp-27 \
+				bash -c '/app/_build/$${MIX_ENV}/rel/text_analyzer/bin/text_analyzer start_iex'
 
 help: ## Show this info
 	@echo -e '\n\033[1mSupported targets:\033[0m\n'

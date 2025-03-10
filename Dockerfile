@@ -4,7 +4,7 @@ COPY . /app
 
 WORKDIR /app
 
-RUN mix deps.get && mix compile && mix release
+RUN mix clean && mix deps.get && mix compile && mix release
 
 EXPOSE 4000
 

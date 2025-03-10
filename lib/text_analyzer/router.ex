@@ -8,10 +8,9 @@ defmodule TextAnalyzerWeb.Router do
   scope "/", TextAnalyzerWeb do
     pipe_through :api
 
-    # Маршруты для анализа текста
-    post "/analyze_text", AnalysisController, :analyze_text
-    get "/analysis_results", AnalysisController, :get_results
-    post "/tasks/:task_id/cancel", AnalysisController, :cancel_task
-    get "/tasks", AnalysisController, :list_tasks
+    post "/analyze_text", AnalysisController, :analyze
+    get "/analysis_results", AnalysisController, :result
+    post "/tasks/:task_id/cancel", AnalysisController, :cancel
+    get "/tasks", AnalysisController, :tasks
   end
 end
